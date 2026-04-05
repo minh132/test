@@ -1,0 +1,22 @@
+FROM nvidia/cuda:12.1.1-cudnn8-runtime-ubuntu22.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV PYTHONUNBUFFERED=1
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    python3.11 python3.11-dev python3-pip build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN ln -s /usr/bin/python3.11 /usr/bin/python
+
+WORKDIR /app
+
+COPY pyproject.toml .
+RUN pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cu121 && \
+    pip install --no-cache-dir .
+
+COPY . .
+
+EXPOSE 8001
+
+CMD ["uvicorn", "rag_core_api:app", "--host", "0.0.0.0", "--port", "8001"]
