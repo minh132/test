@@ -91,7 +91,7 @@ OPENAI_API_KEY=sk-...
 
 ```bash
 cd react_agent/
-uv run python demo.py
+python demo.py
 ```
 
 ## Sample trace
