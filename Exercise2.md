@@ -77,14 +77,13 @@ result = eval(code, {"__builtins__": {}}, allowed_names)
 ## Setup
 
 ```bash
-pip install openai tavily-python python-dotenv
+pip install openai python-dotenv
 ```
 
 Create a `.env` file in `react_agent/`:
 
 ```
 OPENAI_API_KEY=sk-...
-TAVILY_API_KEY=tvly-...
 ```
 
 ## Run the demo
@@ -98,15 +97,12 @@ python demo.py
 
 ```
 Action: web_search
-Action Input: {"query": "GDP of France 2023 USD"}
-Observation: France's GDP in 2023 was approximately $2.78 trillion USD...
-
+Action Input: {"query": "France GDP 2023 in USD"}
+Observation: France's GDP in 2023 was approximately $2.78 trillion USD (World Bank estimate).
 Action: calculator
-Action Input: {"expression": "2.78e12 * 0.12"}
+Action Input: {"expression": "0.12 * 2.78e12"}
 Observation: 333600000000.0
-
-Final Answer: 12% of France's 2023 GDP is approximately $333.6 billion USD.
-
+Final Answer: 12% of the GDP of France in 2023 is approximately $333.6 billion USD.
 --- Self-Verification ---
 Verification: CORRECT
 ```

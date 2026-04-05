@@ -3,7 +3,6 @@ import openai
 from dotenv import load_dotenv
 
 from agent import ReActAgent
-from schemas import AgentConfig
 
 load_dotenv()
 
@@ -15,16 +14,12 @@ if __name__ == "__main__":
         raise SystemExit(1)
 
     client = openai.OpenAI(api_key=api_key)
-    agent = ReActAgent(client, config=AgentConfig(max_steps=15, max_verify_attempts=2, temperature=0.7))
+    agent = ReActAgent(client)
 
-    question = "What is the time complexity of Python's built-in sort (Timsort) in the worst case? If I sort a list of 1 million elements, and each comparison takes 10 nanoseconds, what is the maximum time in milliseconds the sort could take?"
-    print(f"Question: {question}\n")
-
-    result = agent.run(question)
+    answer = agent.run("What is 12% of the GDP of France in 2023 (in USD)?")
 
     print("--- Final Answer ---")
-    print(result.answer)
-    print(f"\nVerified: {result.verified}")
+    print(answer)
     print("\n--- Agent Trace ---")
-    for entry in result.trace:
+    for entry in agent.trace:
         print(entry)

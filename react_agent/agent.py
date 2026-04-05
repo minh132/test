@@ -110,11 +110,11 @@ Otherwise output 'INCORRECT' followed by a brief explanation."""
 
         return "Failed to produce an answer within the step limit.", False, ""
 
-    def run(self, question: str) -> AgentRun:
+    def run(self, question: str) -> str:
         self.trace = []
         messages: List[Dict[str, Any]] = [
             {"role": "system", "content": self.system_prompt},
             {"role": "user", "content": question},
         ]
-        answer, verified = self._run_until_answer(question, messages)
-        return AgentRun(question=question, answer=answer, trace=list(self.trace), verified=verified)
+        answer, _ = self._run_until_answer(question, messages)
+        return answer
