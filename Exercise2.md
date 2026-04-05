@@ -77,7 +77,8 @@ result = eval(code, {"__builtins__": {}}, allowed_names)
 ## Setup
 
 ```bash
-pip install openai python-dotenv
+cd react_agent/
+uv sync
 ```
 
 Create a `.env` file in `react_agent/`:
@@ -90,7 +91,7 @@ OPENAI_API_KEY=sk-...
 
 ```bash
 cd react_agent/
-python demo.py
+uv run python demo.py
 ```
 
 ## Sample trace

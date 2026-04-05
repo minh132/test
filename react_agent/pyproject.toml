@@ -1,0 +1,13 @@
+[project]
+name = "react-agent"
+version = "0.1.0"
+description = "ReAct-style agent with tool calling and self-verification"
+requires-python = ">=3.10"
+dependencies = [
+    "openai",
+    "python-dotenv",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
